@@ -6,12 +6,15 @@
     "author": "",
     "license": "",
     "private": true,
+    "engines": {
+        "node": ">=6.9.0"
+    },
     "browserslist": [
         "> 1%",
         "last 2 versions"
     ],
     "scripts": {
-        "dev": "webpack-dev-server --config webpack.dev.js",
+        "dev": "webpack --config webpack.dev.js",
         "build": "webpack --config webpack.prod.js --progress --hide-modules"
     },
     "dependencies": {
@@ -23,10 +26,21 @@
         "@babel/preset-env": "^7.1.6",
         "@babel/register": "^7.0.0",
         "@babel/runtime": "^7.1.5",
+        "autoprefixer": "^9.4.2",
         "babel-loader": "^8.0.4",
         "clean-webpack-plugin": "^1.0.0",
+        "css-loader": "^1.0.1",
         "dotenv": "^6.1.0",
         "html-webpack-plugin": "^3.2.0",
+        "node-sass": "^4.10.0",
+        "postcss": "^7.0.6",
+        "postcss-hexrgba": "^1.0.1",
+        "postcss-import": "^12.0.1",
+        "postcss-loader": "^3.0.0",
+        "postcss-nested": "^4.1.0",
+        "postcss-simple-vars": "^5.0.1",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
         "webpack": "^4.26.1",
         "webpack-bundle-analyzer": "^3.0.3",
         "webpack-cli": "^3.1.2",

@@ -12,6 +12,10 @@ const pkg = require('./package.json');
 const settings = require('./webpack.settings.js');
 const common = require('./webpack.common.js');
 
+// style files regexes
+const cssRegex = /\.css$/;
+const sassRegex = /\.(scss|sass)$/;
+
 // Configure the webpack-dev-server
 const configureDevServer = () => {
     return {
@@ -35,17 +39,52 @@ const configureDevServer = () => {
     };
 };
 
+// Configure the Postcss loader
+const configurePostcssLoader = () => {
+    return {
+        test: sassRegex,
+        use: [
+            {
+                loader: 'style-loader',
+            },
+            {
+                loader: 'css-loader',
+                options: {
+                    importLoaders: 2,
+                    sourceMap: true
+                }
+            },
+            {
+                loader: 'postcss-loader',
+                options: {
+                    sourceMap: true
+                }
+            },
+            {
+                loader: 'sass-loader'
+            }
+        ]
+    };
+};
+
 // Development module exports
 module.exports = merge(common, {
     output: {
-        filename: path.join('./js', '[name].[hash].js'),
+        // filename: path.join('./js', '[name].[hash].js'),
+        filename: path.join('./js', '[name].js'),
         publicPath: settings.devServerConfig.public() + '/',
     },
     mode: 'development',
     devtool: 'inline-source-map',
-    devServer: configureDevServer(),
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        // new DashboardPlugin(dashboard.setData),
-    ],
+    watch: true,
+    module: {
+        rules: [
+            configurePostcssLoader(),
+        ],
+    },
+    // devServer: configureDevServer(),
+    // plugins: [
+    //     new webpack.HotModuleReplacementPlugin(),
+    //     // new DashboardPlugin(dashboard.setData),
+    // ],
 });

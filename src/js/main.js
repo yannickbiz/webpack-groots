@@ -1,3 +1,7 @@
+import Test from './components/Test.js';
+import '../css/main.scss';
+
 (() => {
-    console.log('adadada');
+    console.log('main');
+    Test();
 })();

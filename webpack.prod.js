@@ -10,11 +10,12 @@ const common = require('./webpack.common.js');
 // webpack plugins
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // Configure Bundle Analyzer
 const configureBundleAnalyzer = () => {
     return {
+        openAnalyzer: false,
         analyzerMode: 'static',
         reportFilename: 'report.html',
     };
@@ -43,7 +44,8 @@ const configureOptimization = () => {
 
 module.exports = merge(common, {
     output: {
-        filename: path.join('./js', '[name].[chunkhash].js'),
+        // filename: path.join('./js', '[name].[chunkhash].js'),
+        filename: path.join('./js', '[name].js'),
     },
     mode: 'production',
     devtool: 'source-map',
@@ -52,9 +54,9 @@ module.exports = merge(common, {
         new CleanWebpackPlugin(settings.paths.dist.clean,
             configureCleanWebpack()
         ),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, settings.urls.publicPath) + '/index.html',
-        }),
+        // new HtmlWebpackPlugin({
+        //     template: path.resolve(__dirname, settings.urls.publicPath) + '/index.html',
+        // }),
         new BundleAnalyzerPlugin(
             configureBundleAnalyzer()
         ),

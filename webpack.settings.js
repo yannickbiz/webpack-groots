@@ -18,6 +18,7 @@ module.exports = {
     },
     entries: {
         main: 'main.js',
+        groots: 'groots.js',
     },
     devServerConfig: {
         public: () => process.env.DEVSERVER_PUBLIC || 'http://localhost:8080',
