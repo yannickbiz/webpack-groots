@@ -15,6 +15,7 @@ const common = require('./webpack.common.js');
 // style files regexes
 const cssRegex = /\.css$/;
 const sassRegex = /\.(scss|sass)$/;
+const styleRegex = /\.(scss|sass|css|pcss)$/;
 
 // Configure the webpack-dev-server
 const configureDevServer = () => {
@@ -30,40 +31,12 @@ const configureDevServer = () => {
         // overlay: true,
         // stats: 'errors-only',
         // watchOptions: {
-        //     poll: !!parseInt(settings.devServerConfig.poll()),
+            // poll: !!parseInt(settings.devServerConfig.poll()),
         //     ignored: /node_modules/,
         // },
         // headers: {
         //     'Access-Control-Allow-Origin': '*'
         // },
-    };
-};
-
-// Configure the Postcss loader
-const configurePostcssLoader = () => {
-    return {
-        test: sassRegex,
-        use: [
-            {
-                loader: 'style-loader',
-            },
-            {
-                loader: 'css-loader',
-                options: {
-                    importLoaders: 2,
-                    sourceMap: true
-                }
-            },
-            {
-                loader: 'postcss-loader',
-                options: {
-                    sourceMap: true
-                }
-            },
-            {
-                loader: 'sass-loader'
-            }
-        ]
     };
 };
 
@@ -83,8 +56,8 @@ module.exports = merge(common, {
         ],
     },
     // devServer: configureDevServer(),
-    // plugins: [
-    //     new webpack.HotModuleReplacementPlugin(),
-    //     // new DashboardPlugin(dashboard.setData),
-    // ],
+    plugins: [
+        // new webpack.HotModuleReplacementPlugin(),
+        // new DashboardPlugin(dashboard.setData),
+    ],
 });
